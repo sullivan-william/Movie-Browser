@@ -1,23 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import ActorView from './components/ActorView';
+import FavoritesView from './components/FavoritesView';
+import HomeView from './components/HomeView';
+import MovieView from './components/MovieView';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HomeView />
+      <MovieView />
+      <ActorView />
+      <FavoritesView />
     </div>
   );
 }
