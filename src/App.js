@@ -9,7 +9,6 @@ import Favorites from './pages/favorites';
 import Releases from './pages/releases';
 import Popular from './pages/popular';
 
-
 function App() {
   // let [movies, setMovies] = useState([]);
   // let [data, setData] = useState('');
