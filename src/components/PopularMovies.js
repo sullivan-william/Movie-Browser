@@ -24,7 +24,9 @@ function PopularMovies() {
                         {movie.original_title}
                     </Link>
                 </p>
-                <img src={movie.backdrop_path} alt={movie.original_title}></img>
+                <Link to={`/movie/${movie.id}`}>
+                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title}></img>
+                </Link>
             </div>
         )
     })
