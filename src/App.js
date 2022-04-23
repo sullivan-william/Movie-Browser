@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-// import Navbar from './components/Navbar';
-// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import Home from './pages';
-// import About from './pages/about';
-// import Favorites from './pages/favorites';
-// import Releases from './pages/releases';
-// import Popular from './pages/popular';
 import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
 import AddFavorites from './components/AddFavorites';
+import ActorView from './components/ActorView';
+import HomeView from './components/HomeView';
+import MovieView from './components/MovieView';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-const App = () => {
+function App() {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [favorites, setFavorites] = useState([]);
@@ -30,7 +27,6 @@ const App = () => {
 
   };
 
-
   useEffect(() => {
 		getMovieRequest(searchValue);
 	}, [searchValue]);
@@ -41,16 +37,6 @@ const App = () => {
 	};
 
   return (
-    // <Router>
-    //   <Navbar />
-    //   <Routes>
-    //     <Route path='/' exact component={Home} />
-    //     <Route path='/about' component={About} />
-    //     <Route path='/favorites' component={Favorites} />
-    //     <Route path='/releases' component={Releases} />
-    //     <Route path='/popular' component={Popular} />
-    //   </Routes>
-    // </Router>
     <div className='container-fluid movie-app'>
       <div className='row d-flex align-items-center mt-4 mb-4'>
         <MovieListHeading heading='What The Film!'/>
@@ -73,9 +59,15 @@ const App = () => {
 					favoriteComponent={AddFavorites}
 				/>
 			</div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomeView />} />
+          <Route path="/movie/:id" element={<MovieView />} />
+          <Route path="/actor/:id" element={<ActorView />} />
+        </Routes>
+      </Router>
     </div>
   );
-};
+}
 
 export default App;
-
