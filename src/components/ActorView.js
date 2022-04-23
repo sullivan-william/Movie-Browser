@@ -33,6 +33,7 @@ function ActorView() {
             <div key={i}>
                 <Link to={`/movie/${film.id}`}>
                     <p>{film.original_title}</p>
+                    <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt={film.original_title}></img>
                 </Link>
                 <p>{film.character}</p>
             </div>

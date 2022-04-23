@@ -23,6 +23,7 @@ function MovieView() {
         const fetchData = async () => {
             const response = await fetch(API_URL)
             const resData = await response.json()
+            console.log(resData)
             setCastData(resData.cast)
         }
         fetchData()
@@ -33,6 +34,7 @@ function MovieView() {
             <div key={i}>
                 <Link to={`/actor/${actor.id}`}>
                     <p>{actor.name}</p>
+                    <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name}></img>
                 </Link>
                 <p>{actor.character}</p>
             </div>
@@ -42,7 +44,7 @@ function MovieView() {
     return (
         <div>
             <h1>{movieData.original_title}</h1>
-            <img src={movieData.poster_path} alt={movieData.original_title}></img>
+            <img src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`} alt={movieData.original_title}></img>
             <p>{movieData.overview}</p>
             <h3>Cast</h3>
             {cast}
