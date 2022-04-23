@@ -1,16 +1,19 @@
 import './App.css';
 import ActorView from './components/ActorView';
-import FavoritesView from './components/FavoritesView';
 import HomeView from './components/HomeView';
 import MovieView from './components/MovieView';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <HomeView />
-      <MovieView />
-      <ActorView />
-      <FavoritesView />
+    <div className="App">    
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomeView />} />
+          <Route path="/movie/:id" element={<MovieView />} />
+          <Route path="/actor/:id" element={<ActorView />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
