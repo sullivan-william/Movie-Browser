@@ -8,7 +8,9 @@ import AddFavorites from './components/AddFavorites';
 import ActorView from './components/ActorView';
 import HomeView from './components/HomeView';
 import MovieView from './components/MovieView';
+import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+// import FavoritesView from './components/FavoritesView';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -22,52 +24,57 @@ function App() {
     const responseJson = await response.json();
 
     if (responseJson.Search) {
-			setMovies(responseJson.Search);
-		}
+      setMovies(responseJson.Search);
+    }
 
   };
 
   useEffect(() => {
-		getMovieRequest(searchValue);
-	}, [searchValue]);
+    getMovieRequest(searchValue);
+  }, [searchValue]);
 
   const addFavoriteMovie = (movie) => {
-		const newFavoriteList = [...favorites, movie];
-		setFavorites(newFavoriteList);
-	};
+    const newFavoriteList = [...favorites, movie];
+    setFavorites(newFavoriteList);
+  };
 
   return (
-    <div className='container-fluid movie-app'>
-      <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieListHeading heading='What The Film!'/>
-        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-      </div>
-      <div className='row d-flex align-items-center mt-4 mb-4'>
-				<MovieList
-					movies={movies}
-					handleFavoritesClick={addFavoriteMovie}
-					favoriteComponent={AddFavorites}
-				/>
-			</div>
-      <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieListHeading heading='My Favorites'/>
-      </div>
-      <div className='row'>
-				<MovieList
-					movies={favorites}
-					handleFavoritesClick={addFavoriteMovie}
-					favoriteComponent={AddFavorites}
-				/>
-			</div>
-      <Router>
+    <Router>
+      <Navbar />
+      <div className='container-fluid movie-app'>
+        <div className='row d-flex align-items-center mt-4 mb-4'>
+          <MovieListHeading heading='What The Film?' />
+          <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
+        </div>
+        <div className='row d-flex align-items-center mt-4 mb-4'>
+          <MovieList
+            movies={movies}
+            handleFavoritesClick={addFavoriteMovie}
+            favoriteComponent={AddFavorites}
+          />
+        </div>
+        <div className='row d-flex align-items-center mt-4 mb-4'>
+          <MovieListHeading heading='My Favorites' />
+        </div>
+        <div className='row'>
+          <MovieList
+            movies={favorites}
+            handleFavoritesClick={addFavoriteMovie}
+            favoriteComponent={AddFavorites}
+          />
+        </div>
         <Routes>
           <Route path="/" element={<HomeView />} />
           <Route path="/movie/:id" element={<MovieView />} />
           <Route path="/actor/:id" element={<ActorView />} />
+          {/* <Route path="/favorites" element={<FavoritesView/>} /> */}
+
         </Routes>
-      </Router>
-    </div>
+
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
