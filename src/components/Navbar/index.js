@@ -21,15 +21,9 @@ const Navbar = () => {
           {/* <NavLink to='/about' activeStyle>
             About
           </NavLink> */}
-          <NavLink to='/Favorites' activeStyle>
+          <NavLink to='/favorites' activeStyle>
             Favorites
           </NavLink>
-          {/* <NavLink to='/contact-us' activeStyle>
-            New Releases
-          </NavLink>
-          <NavLink to='/sign-up' activeStyle>
-            Popular Movies
-          </NavLink> */}
         </NavMenu>
       </Nav>
     </>
