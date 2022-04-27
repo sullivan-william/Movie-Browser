@@ -58,6 +58,9 @@ function MovieView() {
             <div style={{ display: 'flex' , flexDirection: 'row' , flexWrap: 'wrap' }}>
                 {cast}
             </div>
+            <Badge bg="danger" style={{ width: '90%', margin: '2em' }}>
+                <h2>Reviews</h2>
+            </Badge>
         </div>
     )
 }
