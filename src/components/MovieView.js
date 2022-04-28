@@ -1,4 +1,7 @@
+
+   
 import { useEffect, useState } from "react"
+import { Badge, Card } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 
 function MovieView() {
@@ -33,10 +36,13 @@ function MovieView() {
         return (
             <div key={i}>
                 <Link to={`/actor/${actor.id}`}>
-                    <p>{actor.name}</p>
-                    <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name}></img>
+                    <Card style={{ width: '18rem' , margin: '2em'}} key={i}>
+                        <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name} style={{ width: '18em'}} />
+                        <Card.Body>
+                            <Card.Title>{actor.name} as {actor.character}</Card.Title>
+                        </Card.Body>
+                    </Card>
                 </Link>
-                <p>{actor.character}</p>
             </div>
         )
     })
@@ -46,8 +52,15 @@ function MovieView() {
             <h1>{movieData.original_title}</h1>
             <img src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`} alt={movieData.original_title}></img>
             <p>{movieData.overview}</p>
-            <h3>Cast</h3>
-            {cast}
+            <Badge bg="danger" style={{ width: '90%', margin: '2em' }}>
+                <h2>Cast</h2>
+            </Badge>
+            <div style={{ display: 'flex' , flexDirection: 'row' , flexWrap: 'wrap' }}>
+                {cast}
+            </div>
+            <Badge bg="danger" style={{ width: '90%', margin: '2em' }}>
+                <h2>Reviews</h2>
+            </Badge>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { Badge, Card } from "react-bootstrap"
 
 function PopularMovies() {
 
@@ -18,23 +19,25 @@ function PopularMovies() {
 
     const popularMovies = movieData.map((movie, i) => {
         return (
-            <div key={i}>
-                <p>
-                    <Link to={`/movie/${movie.id}`}>
-                        {movie.original_title}
-                    </Link>
-                </p>
-                <Link to={`/movie/${movie.id}`}>
-                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title}></img>
-                </Link>
-            </div>
+            <Link to={`movie/${movie.id}`}>
+                <Card style={{ width: '18rem' , margin: '2em'}} key={i}>
+                    <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} style={{ width: '18em'}} />
+                    <Card.Body>
+                        <Card.Title>{movie.original_title}</Card.Title>
+                    </Card.Body>
+                </Card>
+            </Link>
         )
     })
 
     return (
         <div>
-            <h3>List of trending movies here</h3>
-            {movieData.length > 0 ? popularMovies : <h2>Loading...</h2>} 
+            <Badge bg="danger" style={{ width: '90%', margin: '2em' }}>
+                <h2>Trending</h2>
+            </Badge>
+            <div style={{ display: 'flex' , flexDirection: 'row' , flexWrap: 'wrap' }}>
+                {movieData.length > 0 ? popularMovies : <h2>Loading...</h2>} 
+            </div>
         </div>
     )
 }
