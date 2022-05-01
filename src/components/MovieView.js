@@ -1,7 +1,7 @@
 
    
 import { useEffect, useState } from "react"
-import { Badge, Card } from "react-bootstrap"
+import { Badge, Carousel } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 
 function MovieView() {
@@ -22,7 +22,7 @@ function MovieView() {
 
     // Get cast from API
     useEffect(() => {
-        const API_URL = `http://localhost:4000/movie/${id}/credits`
+        const API_URL = `http://localhost:4000/movie/cast/${id}`
         const fetchData = async () => {
             const response = await fetch(API_URL)
             const resData = await response.json()
@@ -34,16 +34,27 @@ function MovieView() {
 
     const cast = castData.map((actor, i) => {
         return (
-            <div key={i}>
+            <Carousel.Item>
                 <Link to={`/actor/${actor.id}`}>
-                    <Card style={{ width: '18rem' , margin: '2em'}} key={i}>
-                        <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name} style={{ width: '18em'}} />
-                        <Card.Body>
-                            <Card.Title>{actor.name} as {actor.character}</Card.Title>
-                        </Card.Body>
-                    </Card>
+                    <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name} style={{ width: '18em', marginLeft: '20%', marginBottom: '2%' }}></img>
                 </Link>
-            </div>
+                <Carousel.Caption style={{ marginLeft: '40%', marginBottom: '10%' }}>
+                <Link to={`/actor/${actor.id}`}>
+                    <h3>{actor.name}</h3>
+                </Link>
+                    <h3>as {actor.character}</h3>
+                </Carousel.Caption>
+            </Carousel.Item>
+            // <div key={i}>
+            //     <Link to={`/actor/${actor.id}`}>
+            //             <Card style={{ width: '18rem' , margin: '2em'}} key={i}>
+            //                 <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name} style={{ width: '18em'}} />
+            //                 <Card.Body>
+            //                     <Card.Title>{actor.name} as {actor.character}</Card.Title>
+            //                 </Card.Body>
+            //             </Card>
+            //     </Link>
+            // </div>
         )
     })
 
@@ -55,9 +66,12 @@ function MovieView() {
             <Badge bg="danger" style={{ width: '90%', margin: '2em' }}>
                 <h2>Cast</h2>
             </Badge>
-            <div style={{ display: 'flex' , flexDirection: 'row' , flexWrap: 'wrap' }}>
+            {/* <div style={{ display: 'flex' , flexDirection: 'row' , flexWrap: 'wrap' }}>
                 {cast}
-            </div>
+            </div> */}
+            <Carousel>
+                {cast}
+            </Carousel>
             <Badge bg="danger" style={{ width: '90%', margin: '2em' }}>
                 <h2>Reviews</h2>
             </Badge>
