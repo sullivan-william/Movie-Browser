@@ -1,5 +1,3 @@
-
-   
 import { useEffect, useState } from "react"
 import { Badge, Carousel } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
@@ -45,18 +43,11 @@ function MovieView() {
                     <h3>as {actor.character}</h3>
                 </Carousel.Caption>
             </Carousel.Item>
-            // <div key={i}>
-            //     <Link to={`/actor/${actor.id}`}>
-            //             <Card style={{ width: '18rem' , margin: '2em'}} key={i}>
-            //                 <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name} style={{ width: '18em'}} />
-            //                 <Card.Body>
-            //                     <Card.Title>{actor.name} as {actor.character}</Card.Title>
-            //                 </Card.Body>
-            //             </Card>
-            //     </Link>
-            // </div>
         )
     })
+
+    // Get reviews from API
+
 
     return (
         <div>
@@ -66,15 +57,26 @@ function MovieView() {
             <Badge bg="danger" style={{ width: '90%', margin: '2em' }}>
                 <h2>Cast</h2>
             </Badge>
-            {/* <div style={{ display: 'flex' , flexDirection: 'row' , flexWrap: 'wrap' }}>
-                {cast}
-            </div> */}
             <Carousel>
                 {cast}
             </Carousel>
             <Badge bg="danger" style={{ width: '90%', margin: '2em' }}>
                 <h2>Reviews</h2>
             </Badge>
+            <div>
+                <h2>Add your own review?</h2>
+                <form method='POST' action={`/movie/${id}/review`}>
+                <div className='form-group'>
+                    <label htmlFor='content'>Content</label>
+                    <textarea className='form-control' id='content' name='content'></textarea>
+                </div>
+                <div className='form-group'>
+                    <label htmlFor='author'>Author</label>
+                    <input className='form-control' id='author' name='author'></input>
+                </div>
+                <button type='submit' className='btn btn-primary'>Submit</button>
+                </form>
+            </div>
         </div>
     )
 }

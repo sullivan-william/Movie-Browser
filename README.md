@@ -1,3 +1,5 @@
+In order to run this application you will need to launch the server from https://github.com/sullivan-william/Movie-Browser-Server.git locally on port 4000. All attempts to connect to the deployed server at https://whatthefilmserver.herokuapp.com/ have caused server to crash.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
